@@ -1,0 +1,31 @@
+hadar19,noamsimon
+209800804,318807039
+
+1.
+2.The code uses the following data structures:
+TreeMap: This is used in the SubImgCharMatcher class to store the character brightness ,
+The TreeMap ensures that the characters are sorted by their brightness values.
+(get-O(1),bild-O(nlogn),aad/remove-O(logn),space-O(n)) we chse this becus we will yose mostly get by brightns.
+List: This is used in the ImageProcessor class to store a list of sub-images that
+are created by splitting the original image.(acses by index-O(1),blid O(n)avrege),we chose bcuse its simple
+and efficient way to store a collection of sub-images.
+Set: This is used in the AsciiArtAlgorithm class to store the character set that the SubImgCharMatcher will
+use to match brightness values to characters.
+We chose this data structure because it maintains the members in the order in which they are addressed by
+index with complexity O(1) and is convenient for presenting the Husky characters available to the user with
+low complexity input O(NLOGN) and cheap output and with minimal space complexity.
+
+
+3. We classified the problems in the code into three types of anomalies:
+A. A problem with the command format.
+B. A problem in execute of the operation.
+C. A request for a resolution that cannot be displayed.
+For each problem we wrote an appropriate Exception class which itself inherits
+from the Exception class, we threw the errors during the code according to the
+classification, caught them in the RUN method and printed an error accordingly,
+for invalid image input we continued to chain the problem to the main function
+and from there we made sure to close the program.
+
+4.We added a sterer to the SubImgCharMatcher class for a field with which we decided
+how to round the value in a function that finds the husky character whose brightness
+is closest to a certain value.

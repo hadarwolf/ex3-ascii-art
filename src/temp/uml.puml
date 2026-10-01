@@ -1,0 +1,109 @@
+@startuml
+class Shell {
+    - static final String EXIT_COMMAND = "exit"
+    - static final String CHARS = "chars"
+    - static final String CHAR_NUMS = "0123456789"
+    - static final String ADD = "add"
+    - static final String ALL = "all"
+    - static final String SPACE = "space"
+    - static final String REMOVE = "remove"
+    - static final String RES = "res"
+    - static final String ROUND = "round"
+    - static final String OUTPUT = "output"
+    - static final String RUN = "asciiArt"
+    - static final String HTML = "html"
+    - static final String CONSOLE = "console"
+    - static final String EMPTY = ""
+    - static final String UP = "up"
+    - static final String DOWN = "down"
+    - static final String ABS = "abs"
+    - static final int ZERO = 0
+    - static final int ONE = 1
+    - static final int TWO = 2
+    - static final int LOWEST_CHAR = 32
+    - static final int HIGHEST_CHAR = 126
+    - static final int DEFAULT_RESOLUTION = 2
+    - static final int FACTOR_GROWTH_RESOLUTION = 2
+    - Set<Character> charSet
+    - SubImgCharMatcher matcher
+    - int resolution
+    - Image imageWork
+    - String roundMethod
+    - String output
+    - AsciiArtAlgorithm algorithm
+    - AsciiOutput asciiOutput
+    - SubImgCharMatcher subImgCharMatcher
+
+    + Shell()
+    + run(imagename: String): void
+    - badCommand(): void
+    - initializeImage((imagename: String) void
+    - promptUserInput(): String
+    - extractFirstWord((input: String): String
+    - processCommand(command: String): void
+    - runAsciiArtAlgorithm(): void
+    - handleError( errorMessage: String): void
+    - setMethodToOutput(input: String): void
+    - changeRoundMath(input: String): void
+    - changeResolotion(input: String): void
+    - handleAddCommand(input: String, add: boolean): void
+    - choseAddOrRemove( add: boolean, charToAddOrRemove: Character)void
+    - addAllCharacters(add: boolean): void
+    - handleRangeCommand(range: String, add: boolean): void
+    - loopAction(start: char,  end: char,  add: boolean) void
+    - printChars(): void
+}
+
+class ImageProcessor {
+    + padImageToNearestPowerOfTwo(img: Image): Image
+    -fillPadedArrey(paddedArray: Color[][], img: Image,newHeight: int,newWidth: int,newWidth1: int,
+                                            topPadding: int, height: int,eftPadding: int,width: int ): static void
+    - nearestPowerOfTwo(value: int): int
+    + splitIntoSquareSubImages(img: Image, subImageResolution: int): List<Color[][]>
+    -loopAllImages(img: Image , subImages: List<Color[][]>, rowsOfSubImages: int,
+                                               colsOfSubImages: int, subImageSize: int) List<Color[][]>
+    + calculateBrightness(img: Image): double
+}
+
+class AsciiArtAlgorithm {
+    - Image img
+    - int resolution
+    - Set<Character> charset
+    - SubImgCharMatcher charMatcher
+    - String output
+    - String round
+    - boolean eqwallToLastImage
+
+    + AsciiArtAlgorithm(img: Image, resolution: int, charset: Set<Character>, round: String,
+        qualToLastImageAndResolution: boolean)
+    + run(): char[][]
+    - fellAsciiArt(rows:int, cols: int): char[][]
+}
+
+class Image {
+    - String fileName
+    - int width
+    - int height
+
+    + Image(fileName: String)
+    + getWidth(): int
+    + getHeight(): int
+    + getPixel(x: int, y: int): Color
+}
+
+class SubImgCharMatcher {
+    - Set<Character> charSet
+    - String roundMethod
+
+    + SubImgCharMatcher(charSet: Set<Character>)
+    + setRoundMethod(roundMethod: String): void
+    + getCharByImageBrightness(brightness: double): char
+    + addChar(c: char): void
+    + removeChar(c: char): void
+    - normalByLinerStrech(): void
+    -  getCharBright(c char): static double
+
+}
+
+
+@enduml
